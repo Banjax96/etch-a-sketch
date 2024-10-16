@@ -7,6 +7,8 @@ while (counter < max){
     // create new div
     const gridSquare = document.createElement("div");
 
+    gridSquare.classList.add("child");
+
     // assign div number
     gridSquare.textContent = counter + 1;
 
