@@ -1,28 +1,49 @@
-const container = document.querySelector("#container");
+const button = document.querySelector("#rows");
 
-let counter = 0;
-const max = 16 * 16; // number of divs in grid
+const defaultRows = 16;
 
-while (counter < max){
-    // create new div
-    const gridSquare = document.createElement("div");
+createGrid(defaultRows);
 
-    gridSquare.classList.add("child");
-
-    // assign div number
-    gridSquare.textContent = counter + 1;
-
-    // add div to container
-    container.appendChild(gridSquare);
-
-    // increment counter
-    counter++;
-}
-
-const divs = container.querySelectorAll(".child");
-
-divs.forEach((div) => {
-    div.addEventListener("mouseover", () => {
-        div.classList.add("black");
-    });
+button.addEventListener("click", () => {
+    let numRows = prompt("How many rows? ");
+    if (Number(numRows) > 0 && Number(numRows) <= 100) {
+        const container = document.querySelector("#container");
+        while (container.firstChild) {
+            container.removeChild(container.lastChild);
+        }
+        createGrid(Number(numRows));
+    }
 });
+
+function createGrid(num) {
+    const container = document.querySelector("#container");
+
+    let counter = 0;
+    const max = num * num; // number of divs in grid
+
+    while (counter < max){
+        // create new div
+        const gridSquare = document.createElement("div");
+
+        //gridSquare.classList.add("child");
+
+        gridSquare.style.width = (100 / num) + "%";
+
+        // assign div number
+        gridSquare.textContent = counter + 1;
+
+        // add div to container
+        container.appendChild(gridSquare);
+
+        // increment counter
+        counter++;
+    }
+
+    const divs = container.querySelectorAll("div");
+
+    divs.forEach((div) => {
+        div.addEventListener("mouseover", () => {
+            div.classList.add("black");
+        });
+    });
+}
