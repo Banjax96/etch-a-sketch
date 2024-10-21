@@ -18,3 +18,11 @@ while (counter < max){
     // increment counter
     counter++;
 }
+
+const divs = container.querySelectorAll(".child");
+
+divs.forEach((div) => {
+    div.addEventListener("mouseover", () => {
+        div.classList.add("black");
+    });
+});
